@@ -115,10 +115,10 @@ extern NSString *const LFHTTPRequestPOSTMethod;
 @property (assign) NSTimeInterval timeoutInterval;
 @property (copy) NSString *userAgent;
 @property (copy) NSString *contentType;
-@property (readonly) NSData *receivedData;
+@property (unsafe_unretained, readonly) NSData *receivedData;
 @property (readonly) NSUInteger expectedDataLength;
-@property (assign) id delegate;
-@property (retain) id sessionInfo;
+@property (unsafe_unretained) id delegate;
+@property (strong) id sessionInfo;
 @property (assign) BOOL shouldWaitUntilDone;
 @property (readonly) BOOL isRunning;
 

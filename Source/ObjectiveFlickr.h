@@ -70,16 +70,16 @@ extern NSString *const OFFlickrDeletePermission;
 #if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_4
 @property (nonatomic, readonly) NSString *key;
 @property (nonatomic, readonly) NSString *sharedSecret;
-@property (nonatomic, retain) NSString *authToken;
+@property (nonatomic, strong) NSString *authToken;
 
-@property (nonatomic, retain) NSString *RESTAPIEndpoint;
-@property (nonatomic, retain) NSString *photoSource;
-@property (nonatomic, retain) NSString *photoWebPageSource;
-@property (nonatomic, retain) NSString *authEndpoint;
-@property (nonatomic, retain) NSString *uploadEndpoint;
+@property (nonatomic, strong) NSString *RESTAPIEndpoint;
+@property (nonatomic, strong) NSString *photoSource;
+@property (nonatomic, strong) NSString *photoWebPageSource;
+@property (nonatomic, strong) NSString *authEndpoint;
+@property (nonatomic, strong) NSString *uploadEndpoint;
 
-@property (nonatomic, retain) NSString *OAuthToken;
-@property (nonatomic, retain) NSString *OAuthTokenSecret;
+@property (nonatomic, strong) NSString *OAuthToken;
+@property (nonatomic, strong) NSString *OAuthTokenSecret;
 #else
 
 - (void)setAuthToken:(NSString *)inAuthToken;
@@ -189,9 +189,9 @@ typedef id OFFlickrAPIRequestDelegateType;
 - (BOOL)uploadImageStream:(NSInputStream *)inImageStream suggestedFilename:(NSString *)inFilename MIMEType:(NSString *)inType arguments:(NSDictionary *)inArguments;
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_4
-@property (nonatomic, readonly) OFFlickrAPIContext *context;
-@property (nonatomic, assign) OFFlickrAPIRequestDelegateType delegate;
-@property (nonatomic, retain) id sessionInfo;
+@property (unsafe_unretained, nonatomic, readonly) OFFlickrAPIContext *context;
+@property (nonatomic, unsafe_unretained) OFFlickrAPIRequestDelegateType delegate;
+@property (nonatomic, strong) id sessionInfo;
 @property (nonatomic, assign) NSTimeInterval requestTimeoutInterval;
 #else
 
