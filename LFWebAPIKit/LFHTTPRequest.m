@@ -232,7 +232,7 @@ void LFHRReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventType even
                 }
 #endif
                 
-                CFRelease(contentLengthString);
+                //CFRelease(contentLengthString);
             }
             
             _receivedContentType = nil;
