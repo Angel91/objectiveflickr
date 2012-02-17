@@ -58,12 +58,6 @@ static void LFSiteReachabilityCallback(SCNetworkReachabilityRef inTarget, SCNetw
 	
 }
 
-- (void)finalize
-{
-	[siteRequest setDelegate:nil];
-	[self stopChecking];
-	[super finalize];
-}
 
 - (id)init
 {

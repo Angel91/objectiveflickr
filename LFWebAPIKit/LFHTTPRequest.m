@@ -114,7 +114,6 @@ void LFHRReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventType even
         _readBuffer = NULL;
     }
     
-    [super finalize];
 }
 
 
@@ -224,11 +223,11 @@ void LFHRReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventType even
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
                 _expectedDataLength = [(NSString *)contentLengthString intValue];
 #else
-                if ([(__bridge_transfer NSString *)contentLengthString respondsToSelector:@selector(integerValue)]) {
-                    _expectedDataLength = [(__bridge NSString *)contentLengthString integerValue];
+                if ([(__bridge NSString *)contentLengthString respondsToSelector:@selector(integerValue)]) {
+                    _expectedDataLength = [(__bridge_transfer  NSString *)contentLengthString integerValue];
                 }
                 else {
-                    _expectedDataLength = [(__bridge NSString *)contentLengthString intValue];
+                    _expectedDataLength = [(__bridge_transfer NSString *)contentLengthString intValue];
                 }
 #endif
                 
@@ -239,8 +238,8 @@ void LFHRReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventType even
             
             CFStringRef contentTypeString = CFHTTPMessageCopyHeaderFieldValue(response, CFSTR("Content-Type"));
             if (contentTypeString) {
-                _receivedContentType = [(__bridge NSString *)contentTypeString copy];
-                CFRelease(contentTypeString);
+                _receivedContentType = [(__bridge_transfer NSString *)contentTypeString copy];
+                //CFRelease(contentTypeString);
             }
         }
         
@@ -338,14 +337,14 @@ void LFHRReadStreamClientCallBack(CFReadStreamRef stream, CFStreamEventType even
 				_expectedDataLength = [(NSString *)contentLengthString intValue];
 #else
 				if ([(__bridge NSString *)contentLengthString respondsToSelector:@selector(integerValue)]) {
-					_expectedDataLength = [(__bridge NSString *)contentLengthString integerValue];
+					_expectedDataLength = [(__bridge_transfer NSString *)contentLengthString integerValue];
 				}
 				else {
-					_expectedDataLength = [(__bridge NSString *)contentLengthString intValue];
+					_expectedDataLength = [(__bridge_transfer NSString *)contentLengthString intValue];
 				}
 #endif
                 
-				CFRelease(contentLengthString);
+				//CFRelease(contentLengthString);
 			}
             
 			_receivedContentType = nil;
